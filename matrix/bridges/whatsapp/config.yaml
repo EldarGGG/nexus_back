@@ -1,0 +1,85 @@
+# Homeserver details
+homeserver:
+    # The address that this appservice can use to connect to the homeserver.
+    address: http://synapse:8008
+    # The domain of the homeserver (for MXIDs, etc).
+    domain: matrix.nexus.local
+
+# Application service host/registration related details
+appservice:
+    # The address that the homeserver can use to connect to this appservice.
+    address: http://mautrix-whatsapp:29318
+    # The hostname and port where this appservice should listen.
+    hostname: 0.0.0.0
+    port: 29318
+    # The unique ID of this appservice.
+    id: whatsapp
+    # Username of the appservice bot.
+    bot_username: whatsappbot
+    # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
+    # to leave display name/avatar as-is.
+    bot_displayname: WhatsApp bridge bot
+    bot_avatar: mxc://maunium.net/NeXNQarUbrlYBiPCpprYsRqr
+    # Whether or not to receive ephemeral events via appservice transactions.
+    ephemeral_events: true
+    # Authentication tokens for AS <-> HS communication.
+    as_token: wh4t5_4pp_4s_t0k3n
+    hs_token: wh4t5_4pp_h5_t0k3n
+
+# Bridge config
+bridge:
+    # Localpart template of MXIDs for WhatsApp users.
+    username_template: whatsapp_{userid}
+    # Displayname template for WhatsApp users.
+    displayname_template: "{displayname} (WA)"
+    # Whether or not to bridge user avatars.
+    user_avatar_sync: true
+    # Whether or not to bridge group/channel avatars.
+    portal_avatar_sync: true
+    # Whether or not to bridge user and group/channel avatars when bridging from Matrix to WhatsApp.
+    avatar_sync: true
+    # Whether or not created rooms should have federation enabled.
+    federate_rooms: true
+    # Whether or not to enable double puppeting
+    double_puppet_server_map: {}
+    double_puppet_allow_discovery: false
+    # Permissions for using the bridge.
+    permissions:
+        "*": relay
+        "matrix.nexus.local": user
+
+# WhatsApp connection settings
+whatsapp:
+    # OS name to report to WhatsApp.
+    os_name: Mautrix-WhatsApp bridge
+    # Browser name to report to WhatsApp.
+    browser_name: unknown
+
+# Database config.
+database:
+    # The database type. "sqlite3" and "postgres" are supported.
+    type: postgres
+    # The database URI.
+    uri: postgresql://nexus_user:nexus_password@db:5432/whatsapp_bridge_db
+    # Maximum number of connections. Mostly relevant for Postgres.
+    max_open_conns: 20
+    max_idle_conns: 2
+    # Maximum connection idle time and lifetime before they're closed. Disabled if null.
+    # Parsed with https://pkg.go.dev/time#ParseDuration
+    max_conn_idle_time: null
+    max_conn_lifetime: null
+
+# Logging config.
+logging:
+    # The directory for log files. Will be created if not found.
+    directory: ./logs
+    # Available variables: .Date for the file date and .Index for different log files on the same day.
+    file_name_format: "{{.Date}}-{{.Index}}.log"
+    # Date format for file names in the Go time format: https://golang.org/pkg/time/#pkg-constants
+    file_date_format: 2006-01-02
+    # Log file permissions.
+    file_mode: 0600
+    # Timestamp format for log entries in the Go time format.
+    timestamp_format: "Jan _2, 2006 15:04:05"
+    # Minimum severity for log messages.
+    print_level: info

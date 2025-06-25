@@ -1,0 +1,54 @@
+# Django and DRF
+django==4.2.7
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.0
+django-cors-headers==4.3.1
+django-extensions==3.2.3
+
+# API Documentation
+drf-yasg==1.21.7
+
+# Health Checks
+django-health-check==3.17.0
+
+# Database
+psycopg==3.1.13
+
+# Cache and messaging
+redis==5.0.1
+celery==5.3.4
+django-celery-beat==2.5.0
+django-celery-results==2.5.0
+
+# Matrix and messaging
+git+https://github.com/poljar/matrix-nio.git
+aiohttp==3.10
+aiofiles==24.1
+
+
+# Image processing
+pillow
+
+# Configuration
+python-decouple==3.8
+
+# WebSocket support
+channels==4.0.0
+channels-redis==4.1.0
+daphne==4.0.0
+
+# AI and automation
+google-genai==0.5.0
+
+# Security and MFA
+cryptography==41.0.7
+pyotp==2.9.0
+qrcode[pil]
+
+# Utilities
+pyyaml==6.0.1
+requests==2.31.0
+websockets==13.0
+
+# Development
+python-dotenv==1.0.0

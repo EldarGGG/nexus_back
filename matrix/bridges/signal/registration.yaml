@@ -1,0 +1,18 @@
+id: signal
+url: http://mautrix-signal:29321
+as_token: s1gn4l_4s_t0k3n
+hs_token: s1gn4l_h5_t0k3n
+sender_localpart: signalbot
+rate_limited: false
+namespaces:
+  users:
+  - exclusive: true
+    regex: '@signal_.*:matrix\.nexus\.local'
+  - exclusive: true
+    regex: '@signalbot:matrix\.nexus\.local'
+  aliases:
+  - exclusive: true
+    regex: '#signal_.*:matrix\.nexus\.local'
+  rooms: []
+protocols:
+- signal

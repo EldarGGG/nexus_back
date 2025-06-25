@@ -1,0 +1,44 @@
+# Homeserver details
+homeserver:
+    address: http://synapse:8008
+    domain: matrix.nexus.local
+
+# Application service host/registration related details
+appservice:
+    address: http://mautrix-instagram:29319
+    hostname: 0.0.0.0
+    port: 29319
+    id: instagram
+    bot_username: instagrambot
+    bot_displayname: Instagram bridge bot
+    ephemeral_events: true
+    as_token: inst4gr4m_4s_t0k3n
+    hs_token: inst4gr4m_h5_t0k3n
+
+# Bridge config
+bridge:
+    username_template: instagram_{userid}
+    displayname_template: "{displayname} (Instagram)"
+    user_avatar_sync: true
+    portal_avatar_sync: true
+    avatar_sync: true
+    federate_rooms: true
+    permissions:
+        "*": relay
+        "matrix.nexus.local": user
+
+# Database config.
+database:
+    type: postgres
+    uri: postgresql://nexus_user:nexus_password@db:5432/instagram_bridge_db
+    max_open_conns: 20
+    max_idle_conns: 2
+
+# Logging config.
+logging:
+    directory: ./logs
+    file_name_format: "{{.Date}}-{{.Index}}.log"
+    file_date_format: 2006-01-02
+    file_mode: 0600
+    timestamp_format: "Jan _2, 2006 15:04:05"
+    print_level: info

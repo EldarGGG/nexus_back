@@ -1,0 +1,608 @@
+WARNING 2025-06-24 17:53:11,752 ai_service 23628 23640 Gemini API key not configured
+WARNING 2025-06-24 17:53:54,557 ai_service 25392 22220 Gemini API key not configured
+INFO 2025-06-24 17:59:58,687 autoreload 12972 22064 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:00:00,104 ai_service 12972 22064 Gemini API key not configured
+WARNING 2025-06-24 18:00:50,175 ai_service 10928 15528 Gemini API key not configured
+ERROR 2025-06-24 18:00:50,323 signal 10928 15528 Signal handler <promise@0x1a68df85bd0 --> <bound method Celery._autodiscover_tasks of <Celery nexus_back at 0x1a68df89010>>> raised: ImportError("cannot import name 'ai_service' from 'matrix_integration.services.ai_service' (C:\\Users\\User\\Desktop\\nexus-front-main\\nexus-back-main\\nexus_back\\matrix_integration\\services\\ai_service.py)")
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\utils\dispatch\signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\vine\promises.py", line 161, in __call__
+    return self.throw()
+           ~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\vine\promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 691, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 700, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+        pkg for fixup in self._fixups
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        if hasattr(fixup, 'autodiscover_tasks')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for pkg in fixup.autodiscover_tasks()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ], related_name=related_name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 695, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        packages() if callable(packages) else packages, related_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 220, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+                            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+                                               related_name) if mod)
+                                               ^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 246, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 271, in find_related_module
+    raise e
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 267, in find_related_module
+    return importlib.import_module(module_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\tasks.py", line 7, in <module>
+    from .services.ai_service import ai_service
+ImportError: cannot import name 'ai_service' from 'matrix_integration.services.ai_service' (C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\services\ai_service.py)
+INFO 2025-06-24 18:02:05,292 autoreload 12972 22064 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\services\ai_service.py changed, reloading.
+INFO 2025-06-24 18:02:11,189 autoreload 21832 4236 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:02:12,737 ai_service 21832 4236 Gemini API key not configured
+INFO 2025-06-24 18:02:44,815 autoreload 21832 4236 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\services\ai_service.py changed, reloading.
+INFO 2025-06-24 18:02:49,201 autoreload 15912 3176 Watching for file changes with StatReloader
+ERROR 2025-06-24 18:03:11,647 signal 21000 13872 Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0x000002189E9157F0>> raised: SyntaxError('source code string cannot contain null bytes')
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\utils\dispatch\signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\fixups\django.py", line 97, in on_import_modules
+    self.worker_fixup.validate_models()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\fixups\django.py", line 137, in validate_models
+    run_checks()
+    ~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\checks\registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\checks\urls.py", line 42, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\checks\urls.py", line 61, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\urls\resolvers.py", line 715, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\urls\resolvers.py", line 708, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\nexus_back\urls.py", line 20, in <module>
+    path('api/matrix_integration/', include('matrix_integration.urls')),
+                                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\urls\conf.py", line 38, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\urls.py", line 3, in <module>
+    from .views import BridgeConnectionViewSet, whatsapp_webhook, telegram_webhook
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\views.py", line 11, in <module>
+    from .services.bridge_manager import bridge_manager
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\services\bridge_manager.py", line 8, in <module>
+    from .ai_service import AIService
+SyntaxError: source code string cannot contain null bytes
+ERROR 2025-06-24 18:03:11,677 signal 21000 13872 Signal handler <promise@0x2189e909950 --> <bound method Celery._autodiscover_tasks of <Celery nexus_back at 0x2189e914ec0>>> raised: SyntaxError('source code string cannot contain null bytes')
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\utils\dispatch\signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\vine\promises.py", line 161, in __call__
+    return self.throw()
+           ~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\vine\promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 691, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 700, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+        pkg for fixup in self._fixups
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        if hasattr(fixup, 'autodiscover_tasks')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for pkg in fixup.autodiscover_tasks()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ], related_name=related_name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\app\base.py", line 695, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        packages() if callable(packages) else packages, related_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 220, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+                            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+                                               related_name) if mod)
+                                               ^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 246, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\celery\loaders\base.py", line 267, in find_related_module
+    return importlib.import_module(module_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\tasks.py", line 7, in <module>
+    from .services.ai_service import ai_service
+SyntaxError: source code string cannot contain null bytes
+WARNING 2025-06-24 18:06:15,643 ai_service 4052 10796 Gemini API key not configured
+WARNING 2025-06-24 18:06:15,646 ai_service 4052 10796 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,215 ai_service 6056 9328 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,217 ai_service 25376 21524 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,231 ai_service 25376 21524 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,224 ai_service 6056 9328 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,414 ai_service 9948 15040 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,424 ai_service 9948 15040 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,489 ai_service 25460 24656 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,504 ai_service 25460 24656 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,644 ai_service 21244 21172 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,648 ai_service 21244 21172 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,785 ai_service 7304 22996 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,791 ai_service 7304 22996 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,809 ai_service 23804 7028 Gemini API key not configured
+WARNING 2025-06-24 18:06:22,816 ai_service 23804 7028 Gemini API key not configured
+WARNING 2025-06-24 18:06:23,375 ai_service 25492 17972 Gemini API key not configured
+WARNING 2025-06-24 18:06:23,381 ai_service 25492 17972 Gemini API key not configured
+WARNING 2025-06-24 18:06:26,363 ai_service 22188 25224 Gemini API key not configured
+WARNING 2025-06-24 18:06:26,365 ai_service 22188 25224 Gemini API key not configured
+INFO 2025-06-24 18:08:08,854 cli 18988 3892 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:08:08,854 server 18988 3892 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-24 18:08:08,855 server 18988 3892 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:08:08,856 server 18988 3892 Listening on TCP address 0.0.0.0:8001
+INFO 2025-06-24 18:19:41,542 autoreload 11908 6920 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:19:43,118 ai_service 11908 6920 Gemini API key not configured
+INFO 2025-06-24 18:28:04,309 autoreload 16204 8500 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:28:05,801 ai_service 16204 8500 Gemini API key not configured
+INFO 2025-06-24 18:29:42,607 autoreload 16204 8500 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\matrix_integration\services\bridge_manager.py changed, reloading.
+INFO 2025-06-24 18:29:46,835 autoreload 10236 20152 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:29:48,922 ai_service 10236 20152 Gemini API key not configured
+INFO 2025-06-24 18:30:39,388 autoreload 15548 9712 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:30:40,733 ai_service 15548 9712 Gemini API key not configured
+WARNING 2025-06-24 18:33:13,645 ai_service 17240 11736 Gemini API key not configured
+WARNING 2025-06-24 18:33:21,673 ai_service 8876 15104 Gemini API key not configured
+WARNING 2025-06-24 18:33:22,520 ai_service 1916 23536 Gemini API key not configured
+WARNING 2025-06-24 18:33:22,631 ai_service 6608 25264 Gemini API key not configured
+WARNING 2025-06-24 18:33:22,650 ai_service 6944 20368 Gemini API key not configured
+WARNING 2025-06-24 18:33:22,787 ai_service 23588 18664 Gemini API key not configured
+WARNING 2025-06-24 18:33:22,885 ai_service 10948 3432 Gemini API key not configured
+WARNING 2025-06-24 18:33:23,199 ai_service 19328 22220 Gemini API key not configured
+WARNING 2025-06-24 18:33:24,262 ai_service 6040 25080 Gemini API key not configured
+WARNING 2025-06-24 18:33:31,012 ai_service 18508 19380 Gemini API key not configured
+INFO 2025-06-24 18:34:43,794 autoreload 6100 24744 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:34:46,887 ai_service 6100 24744 Gemini API key not configured
+INFO 2025-06-24 18:35:57,992 cli 25004 1568 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:35:57,993 server 25004 1568 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-24 18:35:57,994 server 25004 1568 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:35:57,995 server 25004 1568 Listening on TCP address 0.0.0.0:8001
+WARNING 2025-06-24 18:38:51,925 log 15548 25328 Unauthorized: /api/
+WARNING 2025-06-24 18:38:51,933 basehttp 15548 25328 "GET /api/ HTTP/1.1" 401 58
+WARNING 2025-06-24 18:38:51,943 log 15548 25184 Unauthorized: /api/
+WARNING 2025-06-24 18:38:51,943 basehttp 15548 25184 "GET /api/ HTTP/1.1" 401 58
+INFO 2025-06-24 18:39:42,082 basehttp 15548 25328 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-06-24 18:39:42,952 basehttp 15548 24276 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4181
+INFO 2025-06-24 18:39:43,302 basehttp 15548 18368 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-06-24 18:39:43,320 basehttp 15548 18368 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4181
+INFO 2025-06-24 18:39:43,765 basehttp 15548 19124 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-06-24 18:39:43,768 basehttp 15548 18368 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-06-24 18:39:43,797 basehttp 15548 18368 "GET /static/admin/css/login.css HTTP/1.1" 200 958
+INFO 2025-06-24 18:39:43,804 basehttp 15548 19124 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-06-24 18:39:43,830 basehttp 15548 18368 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+INFO 2025-06-24 18:39:43,944 basehttp 15548 19124 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-06-24 18:39:43,966 basehttp 15548 4252 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-06-24 18:39:55,711 basehttp 15548 22560 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-06-24 18:39:55,825 basehttp 15548 22560 "GET /admin/ HTTP/1.1" 200 11850
+INFO 2025-06-24 18:39:55,896 basehttp 15548 25184 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-06-24 18:39:55,897 basehttp 15548 22560 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-06-24 18:39:55,897 basehttp 15548 25448 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-06-24 18:39:55,940 basehttp 15548 22560 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+INFO 2025-06-24 18:39:55,946 basehttp 15548 25448 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-06-24 18:39:55,946 basehttp 15548 25184 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-06-24 18:39:55,972 basehttp 15548 22560 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-06-24 18:39:56,161 basehttp 15548 22560 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-06-24 18:39:56,161 basehttp 15548 25184 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+WARNING 2025-06-24 18:43:25,500 log 15548 24276 Unauthorized: /api/
+WARNING 2025-06-24 18:43:25,516 basehttp 15548 24276 "GET /api/ HTTP/1.1" 401 58
+WARNING 2025-06-24 18:43:25,700 log 15548 20596 Unauthorized: /api/
+WARNING 2025-06-24 18:43:25,701 basehttp 15548 20596 "GET /api/ HTTP/1.1" 401 58
+INFO 2025-06-24 18:44:09,882 server 25004 1568 Killed 0 pending application instances
+INFO 2025-06-24 18:44:35,026 autoreload 15156 22036 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:44:36,443 ai_service 15156 22036 Gemini API key not configured
+INFO 2025-06-24 18:45:26,812 autoreload 20380 20972 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:45:28,121 ai_service 20380 20972 Gemini API key not configured
+INFO 2025-06-24 18:45:32,755 cli 21968 7596 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:45:32,756 server 21968 7596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-24 18:45:32,756 server 21968 7596 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:45:32,757 server 21968 7596 Listening on TCP address 0.0.0.0:8001
+WARNING 2025-06-24 18:51:04,673 ai_service 21148 21532 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,187 ai_service 19084 12508 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,515 ai_service 14296 2228 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,560 ai_service 2676 20912 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,615 ai_service 23988 20524 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,624 ai_service 16524 7460 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,629 ai_service 22704 18360 Gemini API key not configured
+WARNING 2025-06-24 18:51:11,789 ai_service 8940 8228 Gemini API key not configured
+WARNING 2025-06-24 18:51:12,430 ai_service 23392 2980 Gemini API key not configured
+INFO 2025-06-24 18:54:18,578 autoreload 15156 22036 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\nexus_back\settings.py changed, reloading.
+INFO 2025-06-24 18:54:18,770 autoreload 20380 20972 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\nexus_back\settings.py changed, reloading.
+INFO 2025-06-24 18:54:51,170 autoreload 15096 11240 Watching for file changes with StatReloader
+INFO 2025-06-24 18:54:51,209 autoreload 14572 21724 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:55:01,810 ai_service 15096 11240 Gemini API key not configured
+WARNING 2025-06-24 18:55:01,913 ai_service 14572 21724 Gemini API key not configured
+WARNING 2025-06-24 18:55:11,213 log 15096 16256 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 18:55:11,219 log 15096 10588 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 18:55:11,221 basehttp 15096 16256 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 18:55:11,222 basehttp 15096 10588 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 18:55:14,323 log 15096 10588 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 18:55:14,325 basehttp 15096 10588 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 18:55:16,037 log 15096 21008 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 18:55:16,039 basehttp 15096 21008 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+INFO 2025-06-24 18:56:10,208 server 21968 7596 Killed 0 pending application instances
+INFO 2025-06-24 18:56:24,791 autoreload 7768 22548 Watching for file changes with StatReloader
+WARNING 2025-06-24 18:56:27,168 ai_service 7768 22548 Gemini API key not configured
+WARNING 2025-06-24 18:57:40,905 ai_service 14372 24284 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,097 ai_service 12520 24572 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,118 ai_service 15520 15280 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,145 ai_service 25488 24660 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,145 ai_service 3744 9376 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,211 ai_service 8444 21312 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,366 ai_service 3076 25120 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,753 ai_service 11408 25248 Gemini API key not configured
+WARNING 2025-06-24 18:57:47,922 ai_service 9100 7468 Gemini API key not configured
+INFO 2025-06-24 18:58:03,141 cli 14688 10996 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:58:03,142 server 14688 10996 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-24 18:58:03,142 server 14688 10996 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-24 18:58:03,143 server 14688 10996 Listening on TCP address 0.0.0.0:8001
+WARNING 2025-06-24 18:59:13,743 log 7768 23632 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 18:59:13,746 log 7768 20336 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 18:59:13,749 basehttp 7768 23632 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 18:59:13,749 basehttp 7768 20336 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 18:59:15,784 log 7768 23632 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 18:59:15,787 basehttp 7768 23632 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+INFO 2025-06-24 19:03:45,345 autoreload 12492 23264 Watching for file changes with StatReloader
+WARNING 2025-06-24 19:03:46,644 ai_service 12492 23264 Gemini API key not configured
+WARNING 2025-06-24 19:03:52,311 log 12492 17604 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 19:03:52,312 log 12492 12716 Not Found: /messaging/bridges/status/
+WARNING 2025-06-24 19:03:52,313 basehttp 12492 17604 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 19:03:52,313 basehttp 12492 12716 "GET /messaging/bridges/status/ HTTP/1.1" 404 3656
+WARNING 2025-06-24 19:03:55,094 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:55,095 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:03:56,636 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:56,639 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:03:58,173 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:58,174 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:03:58,873 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:58,875 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:03:59,378 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:59,379 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:03:59,846 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:03:59,847 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:04:00,004 log 12492 12716 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:04:00,005 basehttp 12492 12716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:04:03,111 log 12492 2996 Not Found: /messaging/bridges/configure_instagram/
+WARNING 2025-06-24 19:04:03,112 basehttp 12492 2996 "POST /messaging/bridges/configure_instagram/ HTTP/1.1" 404 3696
+WARNING 2025-06-24 19:04:04,330 log 12492 2996 Not Found: /messaging/bridges/configure_whatsapp/
+WARNING 2025-06-24 19:04:04,332 basehttp 12492 2996 "POST /messaging/bridges/configure_whatsapp/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:04:06,001 log 12492 2996 Not Found: /messaging/bridges/configure_facebook/
+WARNING 2025-06-24 19:04:06,002 basehttp 12492 2996 "POST /messaging/bridges/configure_facebook/ HTTP/1.1" 404 3693
+WARNING 2025-06-24 19:04:06,954 log 12492 2996 Not Found: /messaging/bridges/configure_discord/
+WARNING 2025-06-24 19:04:06,956 basehttp 12492 2996 "POST /messaging/bridges/configure_discord/ HTTP/1.1" 404 3690
+WARNING 2025-06-24 19:04:07,805 log 12492 2996 Not Found: /messaging/bridges/configure_signal/
+WARNING 2025-06-24 19:04:07,806 basehttp 12492 2996 "POST /messaging/bridges/configure_signal/ HTTP/1.1" 404 3687
+WARNING 2025-06-24 19:04:11,801 log 12492 23392 Not Found: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:04:11,802 basehttp 12492 23392 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 404 3693
+INFO 2025-06-24 19:07:05,197 autoreload 12492 23264 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\nexus_back\urls.py changed, reloading.
+INFO 2025-06-24 19:07:13,424 autoreload 9452 3548 Watching for file changes with StatReloader
+WARNING 2025-06-24 19:07:19,801 ai_service 9452 3548 Gemini API key not configured
+INFO 2025-06-24 19:08:11,194 autoreload 11188 21716 Watching for file changes with StatReloader
+WARNING 2025-06-24 19:08:13,110 ai_service 11188 21716 Gemini API key not configured
+WARNING 2025-06-24 19:08:23,159 log 11188 24148 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-24 19:08:23,160 log 11188 21928 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-24 19:08:23,160 basehttp 11188 24148 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-24 19:08:23,160 basehttp 11188 21928 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-24 19:08:26,760 log 11188 21928 Unauthorized: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:08:26,761 basehttp 11188 21928 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 401 58
+INFO 2025-06-24 19:09:54,601 autoreload 11188 21716 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views.py changed, reloading.
+INFO 2025-06-24 19:10:01,523 autoreload 10860 23516 Watching for file changes with StatReloader
+WARNING 2025-06-24 19:10:05,516 ai_service 10860 23516 Gemini API key not configured
+WARNING 2025-06-24 19:10:34,022 log 10860 20208 Bad Request: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:10:34,030 basehttp 10860 20208 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 400 50
+WARNING 2025-06-24 19:10:34,545 log 10860 20208 Bad Request: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:10:34,546 basehttp 10860 20208 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 400 50
+WARNING 2025-06-24 19:10:36,906 log 10860 20208 Bad Request: /messaging/bridges/configure_telegram/
+WARNING 2025-06-24 19:10:36,907 basehttp 10860 20208 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 400 50
+INFO 2025-06-24 19:40:59,214 autoreload 24284 16648 Watching for file changes with StatReloader
+WARNING 2025-06-24 19:41:01,138 ai_service 24284 16648 Gemini API key not configured
+ERROR 2025-06-24 19:54:17,128 log 24284 3792 Internal Server Error: /messaging/bridges/status/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views.py", line 258, in status
+    company = request.user.company
+              ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'company'
+ERROR 2025-06-24 19:54:17,139 log 24284 3428 Internal Server Error: /messaging/bridges/status/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views.py", line 258, in status
+    company = request.user.company
+              ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'company'
+ERROR 2025-06-24 19:54:17,155 basehttp 24284 3792 "GET /messaging/bridges/status/ HTTP/1.1" 500 108426
+ERROR 2025-06-24 19:54:17,156 basehttp 24284 3428 "GET /messaging/bridges/status/ HTTP/1.1" 500 108426
+ERROR 2025-06-24 19:58:28,180 log 24284 17512 Internal Server Error: /messaging/bridges/status/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views.py", line 258, in status
+    company = request.user.company
+              ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'company'
+ERROR 2025-06-24 19:58:28,198 log 24284 22200 Internal Server Error: /messaging/bridges/status/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views.py", line 258, in status
+    company = request.user.company
+              ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'company'
+ERROR 2025-06-24 19:58:28,217 basehttp 24284 17512 "GET /messaging/bridges/status/ HTTP/1.1" 500 108426
+ERROR 2025-06-24 19:58:28,219 basehttp 24284 22200 "GET /messaging/bridges/status/ HTTP/1.1" 500 108426
+INFO 2025-06-24 20:04:11,910 autoreload 24284 16648 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\urls.py changed, reloading.
+INFO 2025-06-24 20:04:22,324 autoreload 7708 2864 Watching for file changes with StatReloader
+WARNING 2025-06-24 20:04:25,848 ai_service 7708 2864 Gemini API key not configured
+INFO 2025-06-25 12:09:56,442 autoreload 17376 9304 Watching for file changes with StatReloader
+WARNING 2025-06-25 12:09:58,545 ai_service 17376 9304 Gemini API key not configured
+INFO 2025-06-25 12:13:14,289 autoreload 1620 9812 Watching for file changes with StatReloader
+WARNING 2025-06-25 12:13:15,899 ai_service 1620 9812 Gemini API key not configured
+INFO 2025-06-25 12:15:25,654 autoreload 1620 9812 C:\Users\User\Desktop\nexus-front-main\nexus-back-main\nexus_back\messaging\views\__init__.py changed, reloading.
+INFO 2025-06-25 12:15:27,571 autoreload 6104 9392 Watching for file changes with StatReloader
+WARNING 2025-06-25 12:15:28,774 ai_service 6104 9392 Gemini API key not configured
+INFO 2025-06-25 12:16:28,500 cli 10488 18252 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-25 12:16:28,501 server 10488 18252 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-25 12:16:28,501 server 10488 18252 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-25 12:16:28,502 server 10488 18252 Listening on TCP address 0.0.0.0:8001
+WARNING 2025-06-25 12:18:44,501 ai_service 6600 10072 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,511 ai_service 5724 18776 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,515 ai_service 10860 3056 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,517 ai_service 17864 4736 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,529 ai_service 512 8708 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,554 ai_service 9020 6488 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,554 ai_service 7232 16504 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,576 ai_service 10552 13512 Gemini API key not configured
+WARNING 2025-06-25 12:18:49,832 ai_service 12872 6356 Gemini API key not configured
+INFO 2025-06-25 12:20:36,993 basehttp 6104 16376 "OPTIONS /messaging/bridges/status/ HTTP/1.1" 200 0
+INFO 2025-06-25 12:20:36,996 basehttp 6104 13952 "OPTIONS /messaging/bridges/status/ HTTP/1.1" 200 0
+WARNING 2025-06-25 12:20:37,078 log 6104 16376 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:20:37,079 basehttp 6104 16376 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:20:37,085 log 6104 16376 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:20:37,086 basehttp 6104 16376 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:23:48,658 log 6104 16132 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:23:48,661 basehttp 6104 16132 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:23:48,667 log 6104 16132 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:23:48,668 basehttp 6104 16132 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:23:49,414 ai_service 16520 5968 Gemini API key not configured
+WARNING 2025-06-25 12:25:54,009 log 6104 14404 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:25:54,010 basehttp 6104 14404 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:25:54,015 log 6104 14404 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:25:54,016 basehttp 6104 14404 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+INFO 2025-06-25 12:25:59,062 basehttp 6104 9716 "OPTIONS /messaging/bridges/configure_telegram/ HTTP/1.1" 200 0
+WARNING 2025-06-25 12:25:59,070 log 6104 9716 Unauthorized: /messaging/bridges/configure_telegram/
+WARNING 2025-06-25 12:25:59,071 basehttp 6104 9716 "POST /messaging/bridges/configure_telegram/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:26:44,076 log 6104 2888 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:26:44,077 basehttp 6104 2888 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:26:44,080 log 6104 2888 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:26:44,081 basehttp 6104 2888 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:27:17,090 log 6104 3108 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:27:17,090 basehttp 6104 3108 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:27:17,102 log 6104 3108 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:27:17,103 basehttp 6104 3108 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:28:09,172 log 6104 14588 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:28:09,173 basehttp 6104 14588 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:28:09,176 log 6104 14588 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:28:09,176 basehttp 6104 14588 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:28:41,788 log 6104 9832 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:28:41,789 basehttp 6104 9832 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:28:41,791 log 6104 9832 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:28:41,791 basehttp 6104 9832 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:32:02,089 log 6104 6224 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:32:02,094 log 6104 17492 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 12:32:02,096 basehttp 6104 17492 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 12:32:02,097 basehttp 6104 6224 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:31:50,915 log 6104 19788 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:31:50,918 log 6104 20844 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:31:50,926 basehttp 6104 19788 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:31:50,929 basehttp 6104 20844 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:36:07,282 log 6104 12780 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:36:07,288 log 6104 15564 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:36:07,288 basehttp 6104 12780 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:36:07,289 basehttp 6104 15564 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:47:45,848 log 6104 7908 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:47:45,852 log 6104 11608 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:47:45,856 basehttp 6104 11608 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:47:45,857 basehttp 6104 7908 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:54:30,223 log 6104 3060 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:54:30,235 log 6104 17620 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 15:54:30,237 basehttp 6104 3060 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 15:54:30,237 basehttp 6104 17620 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+INFO 2025-06-25 16:05:17,875 autoreload 16580 17608 Watching for file changes with StatReloader
+WARNING 2025-06-25 16:05:19,223 ai_service 16580 17608 Gemini API key not configured
+INFO 2025-06-25 16:05:52,404 cli 15576 15992 Starting server at tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-25 16:05:52,405 server 15576 15992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-06-25 16:05:52,405 server 15576 15992 Configuring endpoint tcp:port=8001:interface=0.0.0.0
+INFO 2025-06-25 16:05:52,406 server 15576 15992 Listening on TCP address 0.0.0.0:8001
+WARNING 2025-06-25 16:06:43,019 ai_service 9024 11772 Gemini API key not configured
+WARNING 2025-06-25 16:06:47,914 ai_service 3288 20756 Gemini API key not configured
+WARNING 2025-06-25 16:06:47,995 ai_service 6344 19300 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,069 ai_service 4080 4068 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,108 ai_service 3272 20108 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,116 ai_service 12416 9588 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,158 ai_service 7328 11164 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,417 ai_service 2752 15568 Gemini API key not configured
+WARNING 2025-06-25 16:06:48,544 ai_service 18384 2708 Gemini API key not configured
+WARNING 2025-06-25 16:06:51,712 ai_service 7128 15436 Gemini API key not configured
+WARNING 2025-06-25 16:06:51,727 ai_service 20024 9640 Gemini API key not configured
+WARNING 2025-06-25 16:06:51,759 ai_service 18852 8236 Gemini API key not configured
+WARNING 2025-06-25 16:11:45,953 ai_service 14296 15624 Gemini API key not configured
+WARNING 2025-06-25 17:21:42,030 ai_service 10552 1252 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,684 ai_service 17384 21040 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,716 ai_service 18996 2608 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,763 ai_service 19040 3628 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,783 ai_service 19336 17152 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,785 ai_service 3788 17908 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,878 ai_service 9940 9784 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,919 ai_service 10044 18360 Gemini API key not configured
+WARNING 2025-06-25 17:21:46,996 ai_service 5580 20864 Gemini API key not configured
+WARNING 2025-06-25 17:21:49,204 ai_service 17616 12716 Gemini API key not configured
+WARNING 2025-06-25 17:25:53,125 log 16580 1468 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:25:53,129 log 16580 11708 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:25:53,135 basehttp 16580 1468 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:25:53,137 basehttp 16580 11708 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:26:22,017 log 16580 17100 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:26:22,019 log 16580 2792 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:26:22,020 basehttp 16580 2792 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:26:22,020 basehttp 16580 17100 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:28:09,631 log 16580 10448 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:28:09,635 log 16580 13984 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:28:09,636 basehttp 16580 10448 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:28:09,636 basehttp 16580 13984 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:29:48,087 log 16580 18232 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:29:48,090 log 16580 19488 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 17:29:48,090 basehttp 16580 19488 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 17:29:48,091 basehttp 16580 18232 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:02:53,009 ai_service 7832 19552 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,004 ai_service 14936 1368 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,033 ai_service 20284 12592 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,075 ai_service 16268 3272 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,118 ai_service 17820 11676 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,121 ai_service 6884 11412 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,166 ai_service 20116 22136 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,497 ai_service 20132 21896 Gemini API key not configured
+WARNING 2025-06-25 18:02:59,796 ai_service 10980 15212 Gemini API key not configured
+WARNING 2025-06-25 18:03:03,522 ai_service 1516 9676 Gemini API key not configured
+WARNING 2025-06-25 18:03:03,567 ai_service 20104 9900 Gemini API key not configured
+WARNING 2025-06-25 18:04:15,823 log 16580 21252 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:04:15,839 log 16580 19692 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:04:15,846 basehttp 16580 21252 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:04:15,847 basehttp 16580 19692 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:05:12,185 log 16580 19776 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:05:12,189 log 16580 20120 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:05:12,189 basehttp 16580 19776 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:05:12,190 basehttp 16580 20120 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:06:39,321 log 16580 20120 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:06:39,325 log 16580 19776 Unauthorized: /messaging/bridges/status/
+WARNING 2025-06-25 18:06:39,335 basehttp 16580 20120 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+WARNING 2025-06-25 18:06:39,336 basehttp 16580 19776 "GET /messaging/bridges/status/ HTTP/1.1" 401 58
+INFO 2025-06-25 18:08:07,149 server 15576 15992 Killed 0 pending application instances

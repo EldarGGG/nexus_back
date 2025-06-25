@@ -1,0 +1,52 @@
+# Signal Bridge Configuration
+# This file will be populated dynamically by Nexus based on company configurations
+
+homeserver:
+  address: http://synapse:8008
+  domain: matrix.nexus.local
+  verify_ssl: false
+
+appservice:
+  address: http://mautrix-signal:29321
+  hostname: 0.0.0.0
+  port: 29321
+  
+  id: signal
+  bot_username: signalbot
+  bot_displayname: Signal Bridge Bot
+  
+  as_token: s1gn4l_4s_t0k3n
+  hs_token: s1gn4l_h5_t0k3n
+
+# Database config.
+database:
+    type: postgres
+    uri: postgresql://nexus_user:nexus_password@db:5432/signal_bridge_db
+    max_open_conns: 20
+    max_idle_conns: 2
+
+permissions:
+  "*": relay
+  "matrix.nexus.local": user
+
+bridge:
+  username_template: signal_{userid}
+  displayname_template: "{displayname} (Signal)"
+  user_avatar_sync: true
+  portal_avatar_sync: true
+  avatar_sync: true
+  federate_rooms: true
+  
+logging:
+  version: 1
+  formatters:
+    colored:
+      (): mautrix.util.ColorFormatter
+      format: '[%(asctime)s] [%(levelname)s@%(name)s] %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: colored
+  root:
+    level: INFO
+    handlers: [console]

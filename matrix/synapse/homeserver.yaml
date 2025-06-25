@@ -1,0 +1,135 @@
+server_name: "matrix.nexus.local"
+pid_file: /data/homeserver.pid
+web_client_location: http://localhost:8080/
+
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    bind_addresses: ['::1', '127.0.0.1', '0.0.0.0']
+    resources:
+      - names: [client, federation]
+        compress: false
+
+database:
+  name: psycopg2
+  args:
+    user: nexus_user
+    password: nexus_password
+    database: synapse_db
+    host: db
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+    allow_unsafe_locale: true
+
+log_config: "/data/matrix.nexus.local.log.config"
+
+media_store_path: /data/media_store
+
+registration_shared_secret: "nexus_registration_secret_change_me_in_production"
+
+report_stats: false
+
+macaroon_secret_key: "nexus_macaroon_secret_change_me_in_production"
+
+form_secret: "nexus_form_secret_change_me_in_production"
+
+signing_key_path: "/data/matrix.nexus.local.signing.key"
+
+trusted_key_servers:
+  - server_name: "matrix.org"
+
+enable_registration: true
+enable_registration_without_verification: true
+
+suppress_key_server_warning: true
+
+# Enable presence for online status
+presence:
+  enabled: true
+
+# User consent configuration - completely disabled
+# user_consent:
+#   require: false
+#   version: "1.0"
+
+# Federation configuration
+federation_domain_whitelist: []
+
+# Metrics for monitoring
+enable_metrics: false
+
+# Application service configurations for bridges
+app_service_config_files:
+  - /data/whatsapp-registration.yaml
+  - /data/telegram-registration.yaml
+  - /data/instagram-registration.yaml
+  - /data/facebook-registration.yaml
+  - /data/signal-registration.yaml
+
+# Homeserver blocking - Updated for Docker networking
+federation_ip_range_blacklist:
+  - '127.0.0.0/8'
+  - '169.254.0.0/16'
+  - '::1/128'
+  - 'fe80::/64'
+
+# Rate limiting
+rc_message:
+  per_second: 0.2
+  burst_count: 10
+
+rc_registration:
+  per_second: 0.17
+  burst_count: 3
+
+rc_login:
+  address:
+    per_second: 0.17
+    burst_count: 3
+  account:
+    per_second: 0.17
+    burst_count: 3
+  failed_attempts:
+    per_second: 0.17
+    burst_count: 3
+
+rc_admin_redaction:
+  per_second: 1
+  burst_count: 50
+
+rc_joins:
+  local:
+    per_second: 0.1
+    burst_count: 10
+  remote:
+    per_second: 0.01
+    burst_count: 10
+
+# Email configuration for password resets
+email:
+  smtp_host: smtp.gmail.com
+  smtp_port: 587
+  smtp_user: "your-email@gmail.com"
+  smtp_pass: "your-app-password"
+  require_transport_security: true
+  notif_from: "Nexus Matrix <noreply@matrix.nexus.local>"
+  app_name: Nexus Matrix
+  enable_notifs: false
+  notif_for_new_users: false
+
+# Push notifications
+push:
+  include_content: false
+
+# Room creation settings
+autocreate_auto_join_rooms: true
+
+# Default room version
+default_room_version: "9"
+
+# Experimental features
+experimental_features:
+  faster_joins: true

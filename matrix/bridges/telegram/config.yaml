@@ -1,0 +1,54 @@
+# Homeserver details
+homeserver:
+    address: http://synapse:8008
+    domain: matrix.nexus.local
+
+# Application service host/registration related details
+appservice:
+    address: http://mautrix-telegram:29317
+    hostname: 0.0.0.0
+    port: 29317
+    id: telegram
+    bot_username: telegrambot
+    bot_displayname: Telegram bridge bot
+    bot_avatar: mxc://maunium.net/tJCRmUyJDsgRNgqhOgoiHWbX
+    ephemeral_events: true
+    as_token: t3l3gr4m_4s_t0k3n
+    hs_token: t3l3gr4m_h5_t0k3n
+
+# Bridge config
+bridge:
+    username_template: telegram_{userid}
+    displayname_template: "{displayname} (Telegram)"
+    user_avatar_sync: true
+    portal_avatar_sync: true
+    avatar_sync: true
+    federate_rooms: true
+    double_puppet_server_map: {}
+    double_puppet_allow_discovery: false
+    permissions:
+        "*": relay
+        "matrix.nexus.local": user
+
+# Telegram bot settings
+telegram:
+    # Get bot token from @BotFather on Telegram.
+    api_id: 123456
+    api_hash: "0123456789abcdef0123456789abcdef"
+    bot_token: "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
+
+# Database config.
+database:
+    type: postgres
+    uri: postgresql://nexus_user:nexus_password@db:5432/telegram_bridge_db
+    max_open_conns: 20
+    max_idle_conns: 2
+
+# Logging config.
+logging:
+    directory: ./logs
+    file_name_format: "{{.Date}}-{{.Index}}.log"
+    file_date_format: 2006-01-02
+    file_mode: 0600
+    timestamp_format: "Jan _2, 2006 15:04:05"
+    print_level: info

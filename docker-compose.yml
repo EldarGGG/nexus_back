@@ -1,0 +1,301 @@
+services:
+  # PostgreSQL Database for Django and Synapse
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: nexus_db
+      POSTGRES_USER: nexus_user
+      POSTGRES_PASSWORD: nexus_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus_user -d nexus_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nexus-network
+
+  # Redis for caching and Celery
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nexus-network
+
+  # Matrix Synapse Homeserver
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    restart: unless-stopped
+    environment:
+      SYNAPSE_SERVER_NAME: matrix.nexus.local
+      SYNAPSE_REPORT_STATS: "no"
+      POSTGRES_DB: synapse_db
+      POSTGRES_HOST: db
+      POSTGRES_USER: nexus_user
+      POSTGRES_PASSWORD: nexus_password
+    user: "991:991"
+    volumes:
+      - synapse_data:/data
+      - ./matrix/synapse/homeserver.yaml:/data/homeserver.yaml:ro
+      - ./matrix/synapse/matrix.nexus.local.log.config:/data/matrix.nexus.local.log.config:ro
+      - ./matrix/bridges/whatsapp/registration.yaml:/data/whatsapp-registration.yaml:ro
+      - ./matrix/bridges/telegram/registration.yaml:/data/telegram-registration.yaml:ro
+      - ./matrix/bridges/instagram/registration.yaml:/data/instagram-registration.yaml:ro
+      - ./matrix/bridges/facebook/registration.yaml:/data/facebook-registration.yaml:ro
+      - ./matrix/bridges/signal/registration.yaml:/data/signal-registration.yaml:ro
+    ports:
+      - "8008:8008"
+      - "8448:8448"
+    depends_on:
+      - db
+    networks:
+      - nexus-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8008/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Element Web Client
+  element:
+    image: vectorim/element-web:latest
+    container_name: element
+    restart: unless-stopped
+    volumes:
+      - ./matrix/element/config.json:/app/config.json
+    ports:
+      - "8080:80"
+    depends_on:
+      - synapse
+    networks:
+      - nexus-network
+
+  # Main Django application
+  web:
+    build: .
+    command: daphne -b 0.0.0.0 -p 8000 nexus_back.asgi:application
+    volumes:
+      - .:/app
+      - media_volume:/app/media
+      - static_volume:/app/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      synapse:
+        condition: service_healthy
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://nexus_user:nexus_password@db:5432/nexus_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+      - MATRIX_HOMESERVER=http://synapse:8008
+      - MATRIX_SERVER_NAME=matrix.nexus.local
+      - MATRIX_ADMIN_PASSWORD=admin123
+      - BRIDGE_ENCRYPTION_KEY=your-32-char-encryption-key-here-12345
+      - WHATSAPP_API_VERSION=v18.0
+      - WHATSAPP_VERIFY_TOKEN=your-verify-token
+      - WEBHOOK_BASE_URL=http://nginx
+      - GEMINI_API_KEY=
+      - EMAIL_HOST_USER=your-email@gmail.com
+      - EMAIL_HOST_PASSWORD=your-app-password
+    networks:
+      - nexus-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Celery worker for background tasks
+  celery:
+    build: .
+    command: celery -A nexus_back worker --loglevel=info
+    volumes:
+      - .:/app
+      - media_volume:/app/media
+    depends_on:
+      - db
+      - redis
+      - synapse
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://nexus_user:nexus_password@db:5432/nexus_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+      - MATRIX_HOMESERVER=http://synapse:8008
+      - MATRIX_SERVER_NAME=matrix.nexus.local
+      - MATRIX_ADMIN_PASSWORD=admin123
+      - BRIDGE_ENCRYPTION_KEY=your-32-char-encryption-key-here-12345
+      - GEMINI_API_KEY=your-gemini-api-key
+    networks:
+      - nexus-network
+
+  # Celery beat for periodic tasks
+  celery-beat:
+    build: .
+    command: celery -A nexus_back beat --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://nexus_user:nexus_password@db:5432/nexus_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+      - MATRIX_ADMIN_PASSWORD=admin123
+      - BRIDGE_ENCRYPTION_KEY=your-32-char-encryption-key-here-12345
+    networks:
+      - nexus-network
+
+
+
+  # Matrix Bridge for WhatsApp
+  mautrix-whatsapp:
+    image: dock.mau.dev/mautrix/whatsapp:latest
+    container_name: mautrix-whatsapp
+    restart: unless-stopped
+    volumes:
+      - whatsapp_data:/data
+      - ./matrix/bridges/whatsapp/config.yaml:/data/config.yaml
+    depends_on:
+      - synapse
+      - db
+    environment:
+      - MAUTRIX_HOMESERVER_ADDRESS=http://synapse:8008
+      - MAUTRIX_HOMESERVER_DOMAIN=matrix.nexus.local
+      - MAUTRIX_APPSERVICE_ADDRESS=http://mautrix-whatsapp:29318
+      - MAUTRIX_DATABASE_URI=postgresql://nexus_user:nexus_password@db:5432/whatsapp_bridge_db
+    networks:
+      - nexus-network
+
+  # Matrix Bridge for Telegram
+  mautrix-telegram:
+    image: dock.mau.dev/mautrix/telegram:latest
+    container_name: mautrix-telegram
+    restart: unless-stopped
+    volumes:
+      - telegram_data:/data
+      - ./matrix/bridges/telegram/config.yaml:/data/config.yaml
+    depends_on:
+      - synapse
+      - db
+    environment:
+      - MAUTRIX_HOMESERVER_ADDRESS=http://synapse:8008
+      - MAUTRIX_HOMESERVER_DOMAIN=matrix.nexus.local
+      - MAUTRIX_APPSERVICE_ADDRESS=http://mautrix-telegram:29317
+      - MAUTRIX_DATABASE_URI=postgresql://nexus_user:nexus_password@db:5432/telegram_bridge_db
+    networks:
+      - nexus-network
+
+  # Matrix Bridge for Instagram
+  mautrix-instagram:
+    image: dock.mau.dev/mautrix/instagram:latest
+    container_name: mautrix-instagram
+    restart: unless-stopped
+    volumes:
+      - instagram_data:/data
+      - ./matrix/bridges/instagram/config.yaml:/data/config.yaml
+    depends_on:
+      - synapse
+      - db
+    environment:
+      - MAUTRIX_HOMESERVER_ADDRESS=http://synapse:8008
+      - MAUTRIX_HOMESERVER_DOMAIN=matrix.nexus.local
+      - MAUTRIX_APPSERVICE_ADDRESS=http://mautrix-instagram:29319
+      - MAUTRIX_DATABASE_URI=postgresql://nexus_user:nexus_password@db:5432/instagram_bridge_db
+    networks:
+      - nexus-network
+
+  # Matrix Bridge for Facebook
+  mautrix-facebook:
+    image: dock.mau.dev/mautrix/facebook:latest
+    container_name: mautrix-facebook
+    restart: unless-stopped
+    volumes:
+      - facebook_data:/data
+      - ./matrix/bridges/facebook/config.yaml:/data/config.yaml
+    depends_on:
+      - synapse
+      - db
+    environment:
+      - MAUTRIX_HOMESERVER_ADDRESS=http://synapse:8008
+      - MAUTRIX_HOMESERVER_DOMAIN=matrix.nexus.local
+      - MAUTRIX_APPSERVICE_ADDRESS=http://mautrix-facebook:29320
+      - MAUTRIX_DATABASE_URI=postgresql://nexus_user:nexus_password@db:5432/facebook_bridge_db
+    networks:
+      - nexus-network
+
+  # Matrix Bridge for Signal
+  mautrix-signal:
+    image: dock.mau.dev/mautrix/signal:latest
+    container_name: mautrix-signal
+    restart: unless-stopped
+    volumes:
+      - signal_data:/data
+      - ./matrix/bridges/signal/config.yaml:/data/config.yaml
+    depends_on:
+      - synapse
+      - db
+    environment:
+      - MAUTRIX_HOMESERVER_ADDRESS=http://synapse:8008
+      - MAUTRIX_HOMESERVER_DOMAIN=matrix.nexus.local
+      - MAUTRIX_APPSERVICE_ADDRESS=http://mautrix-signal:29321
+      - MAUTRIX_DATABASE_URI=postgresql://nexus_user:nexus_password@db:5432/signal_bridge_db
+    networks:
+      - nexus-network
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/static
+      - media_volume:/app/media
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - web
+      - synapse
+      - element
+    networks:
+      - nexus-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  media_volume:
+  static_volume:
+  synapse_data:
+  whatsapp_data:
+  telegram_data:
+  instagram_data:
+  facebook_data:
+  signal_data:
+
+networks:
+  nexus-network:
+    driver: bridge

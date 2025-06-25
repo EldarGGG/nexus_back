@@ -1,0 +1,18 @@
+id: facebook
+url: http://mautrix-facebook:29320
+as_token: f4c3b00k_4s_t0k3n
+hs_token: f4c3b00k_h5_t0k3n
+sender_localpart: facebookbot
+rate_limited: false
+namespaces:
+  users:
+  - exclusive: true
+    regex: '@facebook_.*:matrix\.nexus\.local'
+  - exclusive: true
+    regex: '@facebookbot:matrix\.nexus\.local'
+  aliases:
+  - exclusive: true
+    regex: '#facebook_.*:matrix\.nexus\.local'
+  rooms: []
+protocols:
+- facebook

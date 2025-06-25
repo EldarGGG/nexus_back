@@ -1,0 +1,18 @@
+id: whatsapp
+url: http://mautrix-whatsapp:29318
+as_token: wh4t5_4pp_4s_t0k3n
+hs_token: wh4t5_4pp_h5_t0k3n
+sender_localpart: whatsappbot
+rate_limited: false
+namespaces:
+  users:
+  - exclusive: true
+    regex: '@whatsapp_.*:matrix\.nexus\.local'
+  - exclusive: true
+    regex: '@whatsappbot:matrix\.nexus\.local'
+  aliases:
+  - exclusive: true
+    regex: '#whatsapp_.*:matrix\.nexus\.local'
+  rooms: []
+protocols:
+- whatsapp
