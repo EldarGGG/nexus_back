@@ -66,14 +66,13 @@ services:
           name: nexus-redis
           property: connectionString
 
-databases:
-  # PostgreSQL база данных
-  - name: nexus-db
-    ipAllowList: []
-
-services:
   # Redis для каналов и Celery
   - type: redis
     name: nexus-redis
     ipAllowList: []
     plan: free
+
+databases:
+  # PostgreSQL база данных
+  - name: nexus-db
+    ipAllowList: []
