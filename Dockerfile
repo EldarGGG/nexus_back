@@ -5,7 +5,8 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
-    DJANGO_SETTINGS_MODULE=nexus_back.settings
+    DJANGO_SETTINGS_MODULE=nexus_back.railway_settings \
+    PORT=8000
 
 # Set work directory
 WORKDIR /app
@@ -69,4 +70,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Default command
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "nexus_back.asgi:application"]
+CMD daphne -b 0.0.0.0 -p $PORT nexus_back.asgi:application
