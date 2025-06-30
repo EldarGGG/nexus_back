@@ -13,6 +13,8 @@ django-health-check==3.17.0
 
 # Database
 psycopg==3.1.13
+dj-database-url==2.1.0
+psycopg2-binary==2.9.9
 
 # Cache and messaging
 redis==5.0.1
@@ -25,12 +27,12 @@ git+https://github.com/poljar/matrix-nio.git
 aiohttp==3.10
 aiofiles==24.1
 
-
 # Image processing
 pillow
 
 # Configuration
 python-decouple==3.8
+python-dotenv==1.0.0
 
 # WebSocket support
 channels==4.0.0
@@ -48,6 +50,8 @@ qrcode[pil]
 # Utilities
 pyyaml==6.0.1
 requests==2.31.0
+gunicorn==21.2.0
+whitenoise==6.6.0
 websockets==13.0
 
 # Development
