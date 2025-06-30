@@ -5,7 +5,7 @@ nixPkgs = ["...", "python310", "postgresql", "gcc"]
 cmds = ["python -m pip install --upgrade pip", "pip install -r requirements.txt"]
 
 [phases.build]
-cmds = ["cd nexus_back && python manage.py collectstatic --noinput", "cd nexus_back && python manage.py migrate"]
+cmds = ["PYTHONPATH=. python nexus_back/manage.py collectstatic --noinput", "PYTHONPATH=. python nexus_back/manage.py migrate"]
 
 [start]
-cmd = "cd nexus_back && daphne -b 0.0.0.0 -p $PORT nexus_back.asgi:application"
+cmd = "python -m daphne -b 0.0.0.0 -p $PORT nexus_back.asgi:application"
