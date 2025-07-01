@@ -59,16 +59,36 @@ wait_for_redis() {
     echo "Redis connection established or skipped!"
 }
 
-# Only run migrations and setup if this is the web service
-if [ "$1" = "daphne" ]; then
-    # Wait for services
-    wait_for_db
-    wait_for_redis
+# Set up proper error handling
+set -o pipefail
 
+# Show all executed commands for debugging
+if [ "$DEBUG" = "True" ]; then
+    set -x
+fi
+
+# Print env variables for debugging (excluding sensitive data)
+echo "Environment variables (non-sensitive):"
+env | grep -v "SECRET\|PASSWORD\|KEY" || true
+
+# Only run migrations and setup if this is the web service
+if [[ "$1" = "daphne" ]] || [[ "$@" == *"daphne"* ]]; then
+    echo "Starting web service preparation..."
+    # Wait for services
+    wait_for_db || echo "Warning: Database connection failed or skipped"
+    wait_for_redis || echo "Warning: Redis connection failed or skipped"
+
+    # Ensure directory structure
+    mkdir -p /app/static /app/media /app/logs
+
+    # Collect static files
+    echo "Collecting static files..."
+    python manage.py collectstatic --noinput || echo "Static file collection failed, but continuing"
+    
     # Run database migrations
     echo "Running database migrations..."
-    python manage.py makemigrations --noinput
-    python manage.py migrate --noinput
+    python manage.py makemigrations --noinput || echo "Makemigrations failed, but continuing"
+    python manage.py migrate --noinput || echo "Migration failed, but continuing"
 
     # Create superuser if it doesn't exist
     echo "Creating superuser..."

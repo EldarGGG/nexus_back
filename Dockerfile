@@ -6,7 +6,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
     DJANGO_SETTINGS_MODULE=nexus_back.railway_settings \
-    PORT=8000
+    PORT=8000 \
+    DEBUG=True
 
 # Set work directory
 WORKDIR /app
